@@ -1,5 +1,4 @@
-# testPhalcon
-Auth and CRUD for users (based on Phalcon Framework)
+# Auth and CRUD for users (based on Phalcon Framework)
 
 Задача: Создать Авторизацию и CRUD для пользователей
 
