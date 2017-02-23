@@ -102,12 +102,13 @@ class UsersController extends ControllerBase
                     
                     'email' => $this->request->getPost('email', 'email'),
                     
-                    'active' => $this->request->getPost('active')
+                    'active' => $this->request->getPost('active'),
+                    'password' => $this->security->hash($this->request->getPost('password'))
                 ]);
                 
                 $groups = $this->request->getPost('groups');
                      
-                $user->usersGroups = $this->prerapreGroups($groups, $user);
+                $user->usersGroups = $this->prepareGroups($groups, $user);
 
                 if (!$user->save()) {
                     $this->flash->error($user->getMessages());
@@ -162,7 +163,7 @@ class UsersController extends ControllerBase
 
             $groups = $this->request->getPost('groups');
                      
-            $user->usersGroups = $this->prerapreGroups($groups, $user);
+            $user->usersGroups = $this->prepareGroups($groups, $user);
 
             if ($form->isValid($this->request->getPost()) == false) {
                 
@@ -272,7 +273,7 @@ class UsersController extends ControllerBase
     /**
      * Users must use this action to change its password
      */
-    private function prerapreGroups($groups, $user) {
+    private function prepareGroups($groups, $user) {
         
         $data = [];
         
