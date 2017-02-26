@@ -141,7 +141,7 @@ $di->set('dispatcher', function () {
     });
     
     $dispatcher = new Dispatcher();
-    #$dispatcher->setEventsManager($eventsManager);
+    $dispatcher->setEventsManager($eventsManager);
     $dispatcher->setDefaultNamespace('Test\Controllers');
     
     return $dispatcher;
