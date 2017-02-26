@@ -20,7 +20,7 @@
                 {{ form.render("id" , ["autocomplete":"off"]) }}  
                  <div class="form-group"> 
                     <label for="name">Name</label>
-                    {{ form.render("name", ["class": "form-control", "id":"name"]) }}
+                    {{ form.render("name", ["class": "form-control", "id":"name"])}}
                 </div>
 
                  <div class="form-group"> 
@@ -30,9 +30,9 @@
                
                 
                 <div class="form-group"> 
-                    <label for="groups">Groups</label>
+                    <label for="groupsSel">Groups</label>
                 
-                    <select id="groups" name="groups[]" class="form-control" multiple="multiple">
+                    <select id="groupsSel" name="groups[]" class="form-control" multiple="multiple">
                       
                      {% for group in groupsAll %}
                         <option value="{{group.id}}" {% if in_array(group.id, ids) %} selected  {% endif %}>{{group.name}}</option>

@@ -62,7 +62,9 @@
  <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  $("#groups").select2();
+  if (document.getElementById("groupsSel")) { 
+  $("#groupsSel").select2();
+  }
 });
 </script>  
 

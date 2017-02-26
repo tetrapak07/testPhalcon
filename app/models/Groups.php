@@ -27,7 +27,6 @@ class Groups extends Model
      */
     public function initialize()
     {
-
          $this->hasMany(
             "id",
             __NAMESPACE__ . '\UsersGroups',

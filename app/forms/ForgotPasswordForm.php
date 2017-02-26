@@ -24,6 +24,12 @@ class ForgotPasswordForm extends Form
                 'message' => 'The e-mail is not valid'
             ])
         ]);
+        
+        $email->setFilters(
+            [
+                "email"
+            ]
+        );
 
         $this->add($email);
 

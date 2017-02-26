@@ -27,6 +27,14 @@ class SignUpForm extends Form
                 'message' => 'The name is required'
             ])
         ]);
+        
+        $name->setFilters(
+            [
+                "striptags",
+                "string",
+                "alphanum"
+            ]
+        );
 
         $this->add($name);
 
@@ -43,6 +51,12 @@ class SignUpForm extends Form
                 'message' => 'The e-mail is not valid'
             ])
         ]);
+        
+        $email->setFilters(
+            [
+                "email"
+            ]
+        );
 
         $this->add($email);
 
@@ -64,6 +78,13 @@ class SignUpForm extends Form
                 'with' => 'confirmPassword'
             ])
         ]);
+        
+        $password->setFilters(
+            [
+                "striptags",
+                "string"
+            ]
+        );
 
         $this->add($password);
 
@@ -77,6 +98,13 @@ class SignUpForm extends Form
                 'message' => 'The confirmation password is required'
             ])
         ]);
+        
+        $confirmPassword->setFilters(
+            [
+                "striptags",
+                "string"
+            ]
+        );
 
         $this->add($confirmPassword);
 

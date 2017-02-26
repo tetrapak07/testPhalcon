@@ -37,9 +37,9 @@
                         </div>
 
                         <div class="form-group"> 
-                            <label for="groups">Groups</label>
+                            <label for="groupsSel">Groups</label>
                             
-                            <select id="groups" name="groups[]" class="form-control" multiple="multiple">
+                            <select id="groupsSel" name="groups[]" class="form-control" multiple="multiple">
 
                              {% for group in groupsAll %}
                                 <option value="{{group.id}}">{{group.name}}</option>

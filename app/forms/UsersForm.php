@@ -19,47 +19,87 @@ class UsersForm extends Form
 
         # In edition the id is hidden
         if (isset($options['edit']) && $options['edit']) {
+            
             $id = new Hidden('id');
+            
+            $id->setFilters(
+                [
+                    "int"
+                ]
+            );
+
+            $this->add($id); 
+            
         } else {
+            
             $id = new Text('id');
             
             $password = new Password('password', [
             'placeholder' => 'password'
-        ]);
+            ]);
+            
+             $id->setFilters(
+                [
+                    "int"
+                ]
+            );
 
-        $password->addValidators([
-            new PresenceOf([
-                'message' => 'Password is required'
-            ]),
-            new StringLength([
-                'min' => 8,
-                'messageMinimum' => 'Password is too short. Minimum 8 characters'
-            ]),
-            new Confirmation([
-                'message' => 'Password doesn\'t match confirmation',
-                'with' => 'confirmPassword'
-            ])
-        ]);
+            $this->add($id); 
 
-        $this->add($password);
+            $password->addValidators([
+                new PresenceOf([
+                    'message' => 'Password is required'
+                ]),
+                new StringLength([
+                    'min' => 8,
+                    'messageMinimum' => 'Password is too short. Minimum 8 characters'
+                ]),
+                new Confirmation([
+                    'message' => 'Password doesn\'t match confirmation',
+                    'with' => 'confirmPassword'
+                ])
+            ]);
+
+            $password->setFilters(
+                [
+                    "striptags",
+                    "string"
+                ]
+            );
+
+            $this->add($password);
+
+            # Confirm Password
+            $confirmPassword = new Password('confirmPassword');
+
+            $confirmPassword->addValidators([
+                new PresenceOf([
+                    'message' => 'The confirmation password is required'
+                ])
+            ]);
+            
+            $confirmPassword->setFilters(
+                [
+                    "striptags",
+                    "string"
+                ]
+            );
+
+            $this->add($confirmPassword);
         
-        # Confirm Password
-        $confirmPassword = new Password('confirmPassword');
-
-        $confirmPassword->addValidators([
-            new PresenceOf([
-                'message' => 'The confirmation password is required'
-            ])
-        ]);
-
-        $this->add($confirmPassword);
         }
-
-        $this->add($id);
 
         $name = new Text('name', [
             'placeholder' => 'Name'
         ]);
+        
+        $name->setFilters(
+            [
+                "striptags",
+                "string",
+                "alphanum"
+            ]
+        );
 
         $name->addValidators([
             new PresenceOf([
@@ -81,13 +121,34 @@ class UsersForm extends Form
                 'message' => 'The e-mail is not valid'
             ])
         ]);
+        
+        $email->setFilters(
+            [
+                "email"
+            ]
+        );
 
         $this->add($email);
+        
+        $group = new Text('groups', [
+            'placeholder' => 'Group'
+        ]);
 
-        $this->add(new Select('active', [
+        $this->add($group);
+        
+        $select = new Select('active', [
             'Y' => 'Yes',
             'N' => 'No'
-        ]));
+        ]);
+        
+        $select->setFilters(
+            [
+                "striptags",
+                "string"
+            ]
+        );
+
+        $this->add($select);
     }
     
   

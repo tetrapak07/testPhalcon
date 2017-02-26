@@ -28,6 +28,13 @@ class ChangePasswordForm extends Form
                 'with' => 'confirmPassword'
             ])
         ]);
+        
+        $password->setFilters(
+            [
+                "striptags",
+                "string"
+            ]
+        );
 
         $this->add($password);
 
@@ -39,6 +46,13 @@ class ChangePasswordForm extends Form
                 'message' => 'The confirmation password is required'
             ])
         ]);
+        
+        $confirmPassword->setFilters(
+            [
+                "striptags",
+                "string"
+            ]
+        );
 
         $this->add($confirmPassword);
     }

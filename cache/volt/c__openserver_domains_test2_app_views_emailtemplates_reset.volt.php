@@ -1,5 +1,3 @@
-
-
 <tbody>
 	<tr>
 		<td style="padding:40px 0  0 0;">

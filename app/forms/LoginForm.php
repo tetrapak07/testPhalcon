@@ -29,6 +29,12 @@ class LoginForm extends Form
                 'message' => 'The e-mail is not valid'
             ])
         ]);
+        
+        $email->setFilters(
+            [
+                "email"
+            ]
+        );
 
         $this->add($email);
 
@@ -40,6 +46,13 @@ class LoginForm extends Form
         $password->addValidator(new PresenceOf([
             'message' => 'The password is required'
         ]));
+        
+        $password->setFilters(
+            [
+                "striptags",
+                "string"
+            ]
+        );
 
         $password->clear();
 

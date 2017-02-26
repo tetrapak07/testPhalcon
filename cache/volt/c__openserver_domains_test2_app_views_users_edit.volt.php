@@ -30,9 +30,9 @@
                
                 
                 <div class="form-group"> 
-                    <label for="groups">Groups</label>
+                    <label for="groupsSel">Groups</label>
                 
-                    <select id="groups" name="groups[]" class="form-control" multiple="multiple">
+                    <select id="groupsSel" name="groups[]" class="form-control" multiple="multiple">
                       
                      <?php foreach ($groupsAll as $group) { ?>
                         <option value="<?= $group->id ?>" <?php if (in_array($group->id, $ids)) { ?> selected  <?php } ?>><?= $group->name ?></option>

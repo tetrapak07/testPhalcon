@@ -18,6 +18,12 @@ class GroupsForm extends Form
         } else {
             $id = new Text('id');
         }
+        
+        $id->setFilters(
+                [
+                    "int"
+                ]
+            );
 
         $this->add($id);
 
@@ -30,6 +36,14 @@ class GroupsForm extends Form
                 'message' => 'The name is required'
             ])
         ]);
+        
+        $name->setFilters(
+            [
+                "striptags",
+                "string",
+                "alphanum"
+            ]
+        );
 
         $this->add($name);
 

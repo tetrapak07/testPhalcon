@@ -40,8 +40,8 @@ class SessionController extends ControllerBase
 
                 $user = new Users([
                     'name' => $this->request->getPost('name', 'striptags'),
-                    'email' => $this->request->getPost('email'),
-                    'password' => $this->security->hash($this->request->getPost('password')),
+                    'email' => $this->request->getPost('email', 'email'),
+                    'password' => $this->security->hash($this->request->getPost('password', ['striptags', 'string'])),
                 ]);
 
                 if ($user->save()) {
@@ -84,8 +84,8 @@ class SessionController extends ControllerBase
                 } else {
 
                     $this->auth->check([
-                        'email' => $this->request->getPost('email'),
-                        'password' => $this->request->getPost('password'),
+                        'email' => $this->request->getPost('email', 'email'),
+                        'password' => $this->request->getPost('password', ['striptags', 'string']),
                         'remember' => $this->request->getPost('remember')
                     ]);
 
@@ -117,7 +117,7 @@ class SessionController extends ControllerBase
                     }
                 } else {
 
-                    $user = Users::findFirstByEmail($this->request->getPost('email'));
+                    $user = Users::findFirstByEmail($this->request->getPost('email', 'email'));
                     if (!$user) {
                         $this->flash->success('There is no account associated to this email');
                     } else {

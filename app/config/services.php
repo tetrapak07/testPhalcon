@@ -141,7 +141,7 @@ $di->set('dispatcher', function () {
     });
     
     $dispatcher = new Dispatcher();
-    $dispatcher->setEventsManager($eventsManager);
+    #$dispatcher->setEventsManager($eventsManager);
     $dispatcher->setDefaultNamespace('Test\Controllers');
     
     return $dispatcher;
@@ -152,6 +152,10 @@ $di->set('dispatcher', function () {
  */
 $di->set('router', function () {
     return require APP_PATH . '/config/routes.php';
+});
+
+$di->set('modelsManager', function() {
+    return new Phalcon\Mvc\Model\Manager();
 });
 
 /**
