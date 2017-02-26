@@ -38,13 +38,20 @@ class UsersForm extends Form
             'placeholder' => 'password'
             ]);
             
-             $id->setFilters(
+            $id->setFilters(
                 [
                     "int"
                 ]
             );
 
             $this->add($id); 
+            
+            $password->setFilters(
+                [
+                    "striptags",
+                    "string"
+                ]
+            );
 
             $password->addValidators([
                 new PresenceOf([
@@ -60,23 +67,11 @@ class UsersForm extends Form
                 ])
             ]);
 
-            $password->setFilters(
-                [
-                    "striptags",
-                    "string"
-                ]
-            );
 
             $this->add($password);
 
             # Confirm Password
             $confirmPassword = new Password('confirmPassword');
-
-            $confirmPassword->addValidators([
-                new PresenceOf([
-                    'message' => 'The confirmation password is required'
-                ])
-            ]);
             
             $confirmPassword->setFilters(
                 [
@@ -84,6 +79,12 @@ class UsersForm extends Form
                     "string"
                 ]
             );
+
+            $confirmPassword->addValidators([
+                new PresenceOf([
+                    'message' => 'The confirmation password is required'
+                ])
+            ]);
 
             $this->add($confirmPassword);
         
@@ -112,6 +113,12 @@ class UsersForm extends Form
         $email = new Text('email', [
             'placeholder' => 'Email'
         ]);
+        
+        $email->setFilters(
+            [
+                "email"
+            ]
+        );
 
         $email->addValidators([
             new PresenceOf([
@@ -121,12 +128,6 @@ class UsersForm extends Form
                 'message' => 'The e-mail is not valid'
             ])
         ]);
-        
-        $email->setFilters(
-            [
-                "email"
-            ]
-        );
 
         $this->add($email);
         

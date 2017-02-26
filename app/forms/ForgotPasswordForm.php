@@ -15,6 +15,12 @@ class ForgotPasswordForm extends Form
         $email = new Text('email', [
             'placeholder' => 'Email'
         ]);
+        
+         $email->setFilters(
+            [
+                "email"
+            ]
+        );
 
         $email->addValidators([
             new PresenceOf([
@@ -25,12 +31,6 @@ class ForgotPasswordForm extends Form
             ])
         ]);
         
-        $email->setFilters(
-            [
-                "email"
-            ]
-        );
-
         $this->add($email);
 
         $this->add(new Submit('Send', [

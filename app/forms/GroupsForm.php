@@ -30,12 +30,6 @@ class GroupsForm extends Form
         $name = new Text('name', [
             'placeholder' => 'Name'
         ]);
-
-        $name->addValidators([
-            new PresenceOf([
-                'message' => 'The name is required'
-            ])
-        ]);
         
         $name->setFilters(
             [
@@ -44,6 +38,13 @@ class GroupsForm extends Form
                 "alphanum"
             ]
         );
+
+        $name->addValidators([
+            new PresenceOf([
+                'message' => 'The name is required'
+            ])
+        ]);
+        
 
         $this->add($name);
 

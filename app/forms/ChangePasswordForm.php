@@ -14,6 +14,13 @@ class ChangePasswordForm extends Form
     {
         # Password
         $password = new Password('password');
+        
+        $password->setFilters(
+            [
+                "striptags",
+                "string"
+            ]
+        );
 
         $password->addValidators([
             new PresenceOf([
@@ -29,23 +36,10 @@ class ChangePasswordForm extends Form
             ])
         ]);
         
-        $password->setFilters(
-            [
-                "striptags",
-                "string"
-            ]
-        );
-
         $this->add($password);
 
         # Confirm Password
         $confirmPassword = new Password('confirmPassword');
-
-        $confirmPassword->addValidators([
-            new PresenceOf([
-                'message' => 'The confirmation password is required'
-            ])
-        ]);
         
         $confirmPassword->setFilters(
             [
@@ -53,6 +47,12 @@ class ChangePasswordForm extends Form
                 "string"
             ]
         );
+
+        $confirmPassword->addValidators([
+            new PresenceOf([
+                'message' => 'The confirmation password is required'
+            ])
+        ]);
 
         $this->add($confirmPassword);
     }

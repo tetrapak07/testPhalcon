@@ -21,12 +21,6 @@ class SignUpForm extends Form
         $name = new Text('name');
 
         $name->setLabel('Name');
-
-        $name->addValidators([
-            new PresenceOf([
-                'message' => 'The name is required'
-            ])
-        ]);
         
         $name->setFilters(
             [
@@ -36,12 +30,24 @@ class SignUpForm extends Form
             ]
         );
 
+        $name->addValidators([
+            new PresenceOf([
+                'message' => 'The name is required'
+            ])
+        ]);
+        
         $this->add($name);
 
         # Email
         $email = new Text('email');
 
         $email->setLabel('E-Mail');
+        
+        $email->setFilters(
+            [
+                "email"
+            ]
+        );
 
         $email->addValidators([
             new PresenceOf([
@@ -52,18 +58,19 @@ class SignUpForm extends Form
             ])
         ]);
         
-        $email->setFilters(
-            [
-                "email"
-            ]
-        );
-
         $this->add($email);
 
         # Password
         $password = new Password('password');
 
         $password->setLabel('Password');
+        
+        $password->setFilters(
+            [
+                "striptags",
+                "string"
+            ]
+        );
 
         $password->addValidators([
             new PresenceOf([
@@ -78,13 +85,6 @@ class SignUpForm extends Form
                 'with' => 'confirmPassword'
             ])
         ]);
-        
-        $password->setFilters(
-            [
-                "striptags",
-                "string"
-            ]
-        );
 
         $this->add($password);
 
@@ -92,12 +92,6 @@ class SignUpForm extends Form
         $confirmPassword = new Password('confirmPassword');
 
         $confirmPassword->setLabel('Confirm Password');
-
-        $confirmPassword->addValidators([
-            new PresenceOf([
-                'message' => 'The confirmation password is required'
-            ])
-        ]);
         
         $confirmPassword->setFilters(
             [
@@ -105,6 +99,12 @@ class SignUpForm extends Form
                 "string"
             ]
         );
+
+        $confirmPassword->addValidators([
+            new PresenceOf([
+                'message' => 'The confirmation password is required'
+            ])
+        ]);
 
         $this->add($confirmPassword);
 
