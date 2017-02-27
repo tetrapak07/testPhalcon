@@ -1,4 +1,5 @@
 # Auth and CRUD for users (based on Phalcon Framework)
+[![Code Climate](https://lima.codeclimate.com/repos/58b4ad3da26906029100000b/badges/c6719e9df9b0e0e676ff/gpa.svg)](https://lima.codeclimate.com/repos/58b4ad3da26906029100000b/feed)
 
 Задача: Создать Авторизацию и CRUD для пользователей
 
